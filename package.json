@@ -1,0 +1,124 @@
+{
+  "name": "vscode-cursor-decorator",
+  "displayName": "Cursor Decorator",
+  "description": "learn from vscode-power-mode, just leave the cursor decorator",
+  "version": "1.0.0",
+  "publisher": "alset0326",
+  "icon": "images/icon-large.png",
+  "author": {
+    "name": "alset0326",
+    "url": "https://github.com/alset0326"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alset0326/vscode-cursor-decorator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alset0326/vscode-cursor-decorator.git"
+  },
+  "homepage": "https://github.com/alset0326/vscode-cursor-decorator",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "14.14.32",
+    "@types/vscode": "^1.54.0",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "eslint": "^7.21.0",
+    "typescript": "4.2.3"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Cursor Decorator",
+      "properties": {
+        "cursordecorator.enabled": {
+          "default": false,
+          "type": "boolean",
+          "description": "Enable to activate Cursor Decorator!!!"
+        },
+        "cursordecorator.customGifs": {
+          "type": "array",
+          "items": "string",
+          "default": [],
+          "description": "Use anything that can go in the 'url()' part of a background image such as a base64 encoded gif or absolute file path WITHOUT quotes. Urls must be https."
+        },
+        "cursordecorator.maxGifs": {
+          "type": "number",
+          "default": 1,
+          "description": "The maximum number of simultaneous gifs"
+        },
+        "cursordecorator.gifSize": {
+          "type": "number",
+          "default": 10,
+          "description": "The size of the gifs. For value X, the height is set to X rem and the width to X ch"
+        },
+        "cursordecorator.gifFrequency": {
+          "type": "number",
+          "default": 1,
+          "description": "The number of key strokes needed to trigger an gif. 1 means every key stroke."
+        },
+        "cursordecorator.xOffset": {
+          "type": "number",
+          "default": 1,
+          "description": "The horizontal offset of the gifs. Increasing it will move the gifs right, decreasing it will move them left. the xOffset=-(gifSize-1)/2 would set the gif center"
+        },
+        "cursordecorator.yOffset": {
+          "type": "number",
+          "default": -1,
+          "description": "The vertical offset of the gifs. Increasing it will move the gifs up, decreasing it will move them down."
+        },
+        "cursordecorator.backgroundMode": {
+          "type": "string",
+          "enum": [
+            "mask",
+            "image"
+          ],
+          "default": "image",
+          "description": "Affects the css properties used to display the gif. `mask` uses the gifs as a mask to let the background come through (similar to atom power mode) and `image` will display the actual gif."
+        },
+        "cursordecorator.gifOrder": {
+          "description": "Determines how the gifs are cycled. 'random' (default) picks from the list randomly. 'sequential' goes through the list in order, and a number will select the gif at that (zero based)index in the list",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "random",
+                "sequential"
+              ]
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "default": "random"
+        },
+        "cursordecorator.gifDuration": {
+          "description": "Determines how long an gif lasts (in milliseconds). Set to 0 for it to last forever.",
+          "type": "number",
+          "default": 3000
+        },
+        "cursordecorator.customCss": {
+          "description": "Set custom CSS that will apply to the gif element.",
+          "type": "object",
+          "default": {}
+        }
+      }
+    }
+  }
+}
